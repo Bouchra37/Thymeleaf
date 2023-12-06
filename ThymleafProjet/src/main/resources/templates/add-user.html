@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Your Form Title</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        /* Custom hover effect */
+        .btn-hover:hover {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .my-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color:rgb(223, 142, 32);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container mt-4">
+    <h1>Add User</h1>
+
+    <form action="#" th:action="@{/adduser}" th:object="${user}" method="post" class="my-form">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="Name">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" th:field="*{email}" id="email" class="form-control" placeholder="Email">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-secondary btn-block btn-hover">Add User</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS and jQuery (you may need to include jQuery) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

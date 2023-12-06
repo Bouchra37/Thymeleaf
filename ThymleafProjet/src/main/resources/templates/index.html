@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Your Page Title</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            color: rgb(223, 142, 32);
+        }
+
+        table {
+            background-color: #fff;
+        }
+
+        th,
+        td {
+            text-align: center;
+        }
+
+        .btn-edit,
+        .btn-delete,
+        .btn-add {
+            width: 120px;
+            margin: 5px;
+        }
+
+        .center-div {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div th:switch="${users}">
+        <h2 th:case="null" class="center-div">No users yet!</h2>
+        <div th:case="*">
+            <h2>Users</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td><a th:href="@{/edit/{id}(id=${user.id})}" class="btn btn-outline-warning">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-outline-info">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="center-div">
+            <a href="/signup" class="btn btn-secondary">Add a new user</a>
+        </p>
+    </div>
+</div>
+
+<!-- Bootstrap JS and jQuery (you may need to include jQuery) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
